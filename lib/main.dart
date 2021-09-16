@@ -18,10 +18,36 @@ class GroupChatApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData.dark().copyWith(
-        primaryColor: Colors.lightBlue,
-        scaffoldBackgroundColor: Colors.white,
+        textTheme: TextTheme(
+          bodyText2: TextStyle(color: Colors.black54),
+        ),
       ),
-      home: LoginScreen(),
+      initialRoute: WelcomeScreen().id,
+      routes: {
+        WelcomeScreen().id: (context) => WelcomeScreen(),
+        LoginScreen().id: (context) => LoginScreen(),
+        RegistrationScreen().id: (context) => RegistrationScreen(),
+        ChatScreen().id: (context) => ChatScreen(),
+      },
     );
+  }
+}
+
+class NameDD extends StatefulWidget {
+  // const NameDD({ Key? key }) : super(key: key);
+
+  @override
+  _NameDDState createState() => _NameDDState();
+}
+
+class _NameDDState extends State<NameDD> {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        home: Scaffold(
+      appBar: AppBar(
+        title: Text("data"),
+      ),
+    ));
   }
 }
