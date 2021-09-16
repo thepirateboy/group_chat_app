@@ -17,11 +17,11 @@ class GroupChatApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text("data"),
-        ),
+      theme: ThemeData.dark().copyWith(
+        primaryColor: Colors.lightBlue,
+        scaffoldBackgroundColor: Colors.white,
       ),
+      home: LoginScreen(),
     );
   }
 }
