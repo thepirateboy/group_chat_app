@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class RegistrationScreen extends StatefulWidget {
-  String id = 'registration_screen';
+  static const String id = 'registration_screen';
 
   @override
   _RegistrationScreenState createState() => _RegistrationScreenState();
@@ -18,9 +19,16 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Container(
-              height: 200.0,
-              child: Image.asset('images/logo.png'),
+            Hero(
+              tag: "logo",
+              child: Container(
+                height: 200.0,
+                child: Icon(
+                  FontAwesomeIcons.bolt,
+                  size: 150,
+                  color: Colors.amberAccent,
+                ),
+              ),
             ),
             SizedBox(
               height: 48.0,
