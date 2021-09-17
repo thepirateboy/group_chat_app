@@ -24,7 +24,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 Icon(
                   FontAwesomeIcons.bolt,
                   color: Colors.amberAccent,
-                  size: 60,
+                  size: 65,
                 ),
                 SizedBox(
                   width: 11,
