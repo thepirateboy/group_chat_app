@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 // ignore: use_key_in_widget_constructors
 class LoginScreen extends StatefulWidget {
-  String id = 'login_screen';
+  static const String id = 'login_screen';
 
   @override
   _LoginScreenState createState() => _LoginScreenState();
@@ -19,9 +20,15 @@ class _LoginScreenState extends State<LoginScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Container(
-              height: 200.0,
-              child: Image.asset('images/logo.png'),
+            Hero(
+              tag: "logo",
+              child: Container(
+                  height: 200.0,
+                  child: Icon(
+                    FontAwesomeIcons.bolt,
+                    color: Colors.amberAccent,
+                    size: 150,
+                  )),
             ),
             SizedBox(
               height: 48.0,
