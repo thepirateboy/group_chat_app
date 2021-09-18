@@ -14,6 +14,8 @@ class _WelcomeScreenState extends State<WelcomeScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController controller;
 
+  late Animation animation1;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -21,14 +23,16 @@ class _WelcomeScreenState extends State<WelcomeScreen>
     controller = AnimationController(
       vsync: this,
       duration: Duration(seconds: 1),
-      upperBound: 100,
+      upperBound: 1, // 100,
     );
+
+    animation1 = CurvedAnimation(parent: controller, curve: Curves.bounceOut);
 
     controller.forward();
 
     controller.addListener(() {
       setState(() {});
-      print(controller.value);
+      print(animation1.value);
     });
   }
 
@@ -50,7 +54,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                     child: Icon(
                       FontAwesomeIcons.bolt,
                       color: Colors.amberAccent,
-                      size: controller.value,
+                      size: animation1.value * 100,
                     ),
                   ),
                 ),
@@ -58,7 +62,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                   width: 11,
                 ),
                 Text(
-                  "${controller.value.toInt()}",
+                  "Flash Chat",
                   style: TextStyle(
                     fontSize: 45.0,
                     fontWeight: FontWeight.w900,
