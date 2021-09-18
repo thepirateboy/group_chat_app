@@ -26,19 +26,22 @@ class _WelcomeScreenState extends State<WelcomeScreen>
       upperBound: 1, // 100,
     );
 
-    animation1 = CurvedAnimation(parent: controller, curve: Curves.bounceOut);
+    // animation1 = CurvedAnimation(parent: controller, curve: Curves.bounceOut);
+
+    animation1 =
+        ColorTween(begin: Colors.blue, end: Colors.white).animate(controller);
 
     controller.forward();
 
-    animation1.addStatusListener((status) {
-      // print(status);
+    // animation1.addStatusListener((status) {
+    //   // print(status);
 
-      if (status == AnimationStatus.completed) {
-        controller.reverse(from: 1);
-      } else if (status == AnimationStatus.dismissed) {
-        controller.forward();
-      }
-    });
+    //   if (status == AnimationStatus.completed) {
+    //     controller.reverse(from: 1);
+    //   } else if (status == AnimationStatus.dismissed) {
+    //     controller.forward();
+    //   }
+    // });
 
     controller.addListener(() {
       setState(() {});
@@ -47,9 +50,16 @@ class _WelcomeScreenState extends State<WelcomeScreen>
   }
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white, //red.withOpacity(controller.value),
+      backgroundColor: animation1.value, //red.withOpacity(controller.value),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 24.0),
         child: Column(
@@ -64,7 +74,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                     child: Icon(
                       FontAwesomeIcons.bolt,
                       color: Colors.amberAccent,
-                      size: animation1.value * 100,
+                      size: 100,
                     ),
                   ),
                 ),
