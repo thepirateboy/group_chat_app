@@ -1,6 +1,9 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:group_chat_app/items.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:group_chat_app/screens/chat_screen.dart';
 
 class RegistrationScreen extends StatefulWidget {
   static const String id = 'registration_screen';
@@ -10,6 +13,10 @@ class RegistrationScreen extends StatefulWidget {
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
+  final _auth = FirebaseAuth.instance;
+  late String username;
+  late String password;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,9 +41,13 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             SizedBox(
               height: 48.0,
             ),
+            // todo: USERNAME TEXTFIELD
             TextField(
+              keyboardType: TextInputType.emailAddress,
+              textAlign: TextAlign.center,
               onChanged: (value) {
                 //Do something with the user input.
+                username = value;
               },
               style: TextStyle(color: Colors.blueAccent),
               decoration: LoginTextDecor(
@@ -47,9 +58,13 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             SizedBox(
               height: 8.0,
             ),
+            // todo: PASSWORD TEXTFIELD
             TextField(
+                obscureText: true,
+                textAlign: TextAlign.center,
                 onChanged: (value) {
                   //Do something with the user input.
+                  password = value;
                 },
                 style: TextStyle(color: Colors.blueAccent),
                 decoration: LoginTextDecor(
@@ -60,8 +75,20 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             ),
             LoginButton(
               theText: "Register",
-              theOnPressed: () {
+              theOnPressed: () async {
                 // Navigator.pushNamed(context, RegistrationScreen.id);
+                print("username = $username \npassword = $password");
+                try {
+                  print("1");
+                  final newUSer = await _auth.createUserWithEmailAndPassword(
+                      email: username, password: password);
+                  print(2);
+                  if (newUSer != null) {
+                    Navigator.pushNamed(context, ChatScreen.id);
+                  }
+                } on Exception catch (e) {
+                  print(e);
+                }
               },
               theColor: Colors.blueAccent,
             ),
