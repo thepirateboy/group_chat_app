@@ -53,6 +53,7 @@ class _NameDDState extends State<NameDD> {
   }
 }
 
+// original main method
 // void main() {
 //   runApp(MaterialApp(
 //     home: GroupChatApp(),
