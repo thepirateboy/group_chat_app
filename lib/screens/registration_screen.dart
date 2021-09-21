@@ -79,8 +79,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 // Navigator.pushNamed(context, RegistrationScreen.id);
                 print("username = $username \npassword = $password");
                 try {
+                  print("1");
                   final newUSer = await _auth.createUserWithEmailAndPassword(
                       email: username, password: password);
+                  print(2);
                   if (newUSer != null) {
                     Navigator.pushNamed(context, ChatScreen.id);
                   }
