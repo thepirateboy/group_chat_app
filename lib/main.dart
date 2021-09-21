@@ -6,12 +6,6 @@ import 'screens/registration_screen.dart';
 import 'screens/welcome_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-// void main() {
-//   runApp(MaterialApp(
-//     home: GroupChatApp(),
-//   ));
-// }
-
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -58,3 +52,9 @@ class _NameDDState extends State<NameDD> {
     ));
   }
 }
+
+// void main() {
+//   runApp(MaterialApp(
+//     home: GroupChatApp(),
+//   ));
+// }
