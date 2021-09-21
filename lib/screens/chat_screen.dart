@@ -14,9 +14,24 @@ class _ChatScreenState extends State<ChatScreen> {
   final _auth = FirebaseAuth.instance;
   late User loggedInUSer;
 
-  void getCurrentUser() async {
-    final user = await _auth.currentUser;
-    if (user != null) {}
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    getCurrentUser();
+  }
+
+  void getCurrentUser() {
+    try {
+      final user = _auth.currentUser;
+      if (user != null) {
+        loggedInUSer = user;
+        print("current user = ${loggedInUSer.email}");
+      }
+    } on Exception catch (e) {
+      print(e);
+    }
   }
 
   @override
@@ -29,6 +44,7 @@ class _ChatScreenState extends State<ChatScreen> {
             icon: Icon(Icons.close),
             onPressed: () {
               //Implement logout functionality
+              Navigator.pop(context);
             },
           ),
         ],

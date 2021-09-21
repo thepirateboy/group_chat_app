@@ -14,7 +14,7 @@ class RegistrationScreen extends StatefulWidget {
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
   final _auth = FirebaseAuth.instance;
-  late String username;
+  late String email;
   late String password;
 
   @override
@@ -41,13 +41,13 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             SizedBox(
               height: 48.0,
             ),
-            // todo: USERNAME TEXTFIELD
+            // todo: EMAIL TEXTFIELD
             TextField(
               keyboardType: TextInputType.emailAddress,
               textAlign: TextAlign.center,
               onChanged: (value) {
                 //Do something with the user input.
-                username = value;
+                email = value;
               },
               style: TextStyle(color: Colors.blueAccent),
               decoration: LoginTextDecor(
@@ -77,17 +77,27 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               theText: "Register",
               theOnPressed: () async {
                 // Navigator.pushNamed(context, RegistrationScreen.id);
-                print("username = $username \npassword = $password");
+                print("username = $email \npassword = $password");
                 try {
                   print("1");
                   final newUSer = await _auth.createUserWithEmailAndPassword(
-                      email: username, password: password);
+                      email: email, password: password);
                   print(2);
                   if (newUSer != null) {
                     Navigator.pushNamed(context, ChatScreen.id);
                   }
                 } on Exception catch (e) {
                   print(e);
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(e.toString()),
+                      backgroundColor: Colors.blueAccent,
+                      action: SnackBarAction(
+                        label: "OK",
+                        onPressed: () {},
+                      ),
+                    ),
+                  );
                 }
               },
               theColor: Colors.blueAccent,
