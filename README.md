@@ -8,5 +8,5 @@
 
 ### More
 
-- [yaeyx](https://yaeyx.com)
+-- [yaeyx](https://yaeyx.com)
 
