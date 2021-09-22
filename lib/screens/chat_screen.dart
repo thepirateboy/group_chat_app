@@ -13,6 +13,7 @@ class ChatScreen extends StatefulWidget {
 
 class _ChatScreenState extends State<ChatScreen> {
   final _auth = FirebaseAuth.instance;
+  final _firestore = FirebaseFirestore.instance;
   late User loggedInUSer;
   late String messageText;
 
@@ -36,6 +37,21 @@ class _ChatScreenState extends State<ChatScreen> {
     }
   }
 
+  // void getMessages() async {
+  //   final messages = await _firestore.collection("messages").get();
+  //   for (var x in messages.docs) {
+  //     print(x.data());
+  //   }
+  // }
+
+  void messagesStream() async {
+    await for (var snapshot in _firestore.collection("messages").snapshots()) {
+      for (var message in snapshot.docs) {
+        print(message.data());
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,8 +61,10 @@ class _ChatScreenState extends State<ChatScreen> {
           IconButton(
             icon: Icon(Icons.close),
             onPressed: () {
+              messagesStream();
               //Implement logout functionality
-              Navigator.pop(context);
+              // _auth.signOut();
+              // Navigator.pop(context);
             },
           ),
         ],
@@ -74,7 +92,11 @@ class _ChatScreenState extends State<ChatScreen> {
                   ),
                   FlatButton(
                     onPressed: () {
-                      //Implement send functionality.
+                      //messageText and loggedInUser.email
+                      _firestore.collection("messages").add({
+                        "text": messageText,
+                        "sender": loggedInUSer.email,
+                      });
                     },
                     child: Text(
                       'Send',
