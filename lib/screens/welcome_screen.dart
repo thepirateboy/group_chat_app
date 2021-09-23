@@ -70,31 +70,35 @@ class _WelcomeScreenState extends State<WelcomeScreen>
           children: [
             Row(
               children: [
-                Hero(
-                  tag: "logo",
-                  child: Container(
-                    child: Icon(
-                      FontAwesomeIcons.bolt,
-                      color: Colors.amberAccent,
-                      size: 100,
+                Flexible(
+                  child: Hero(
+                    tag: "logo",
+                    child: Container(
+                      child: Icon(
+                        FontAwesomeIcons.bolt,
+                        color: Colors.amberAccent,
+                        size: 100,
+                      ),
                     ),
                   ),
                 ),
                 SizedBox(
                   width: 11,
                 ),
-                SizedBox(
-                  child: DefaultTextStyle(
-                    style: TextStyle(
-                      color: Colors.amberAccent,
-                      fontSize: 35,
-                      fontWeight: FontWeight.w900,
-                    ),
-                    child: AnimatedTextKit(
-                      animatedTexts: [
-                        TypewriterAnimatedText("Flash Chat"),
-                        TypewriterAnimatedText("Hey"),
-                      ],
+                Flexible(
+                  child: SizedBox(
+                    child: DefaultTextStyle(
+                      style: TextStyle(
+                        color: Colors.amberAccent,
+                        fontSize: 35,
+                        fontWeight: FontWeight.w900,
+                      ),
+                      child: AnimatedTextKit(
+                        animatedTexts: [
+                          TypewriterAnimatedText("Flash Chat"),
+                          TypewriterAnimatedText("Hey"),
+                        ],
+                      ),
                     ),
                   ),
                 ),
