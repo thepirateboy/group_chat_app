@@ -1,0 +1,45 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "name": "Dart",
+            "type": "dart",
+            "request": "launch",
+            "program": "bin/main.dart"
+        },
+
+        {
+            "name": "group_chat_app",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "group_chat_app (profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "iPhone Xr",
+            "request": "launch",
+            "type": "dart",
+            "deviceId": "263573CE-BD3E-4F80-AB29-25CF82C08E6E"
+        },
+        {
+            "name": "iPhone 11",
+            "request": "launch",
+            "type": "dart",
+            "deviceId": "D9E12669-6FAA-468A-8A0A-CCD64322022D"
+        }
+    ],
+    "compounds": [
+        {
+          "name": "my Devices",
+          "configurations": ["iPhone Xr", "iPod Touch 7th"]
+        }
+    ]
+}
